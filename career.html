@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | MHA</title>
+    <meta name="description"
+        content="Explore career opportunities at Mihen Halani & Associates and join a team shaping governance and compliance in India.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/team-profiles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo" style="text-decoration:none;">
+                    <img src="images/mha-logo.png" alt="MHA Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h2>Mihen Halani & Associates</h2>
+                        <span>Practicing Company Secretaries</span>
+                    </div>
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="index.html#services" class="nav-link">Services</a></li>
+                    <li><a href="index.html#team" class="nav-link">Team</a></li>
+                    <li><a href="career.html" class="nav-link">Careers</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="career-hero reveal-fade">
+        <div class="container">
+            <div class="career-hero-content">
+                <span class="section-badge">Careers at MHA</span>
+                <h1>Build your career in governance, compliance and growth advisory.</h1>
+                <p>We are looking for curious professionals who enjoy solving complex regulatory challenges and
+                    delivering strong outcomes for ambitious businesses.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="career-why reveal-fade">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Why Join Us</span>
+                <h2 class="section-title">A high-trust environment for ambitious professionals.</h2>
+                <p class="section-subtitle">At MHA, you will work with clients across startups, investors and listed
+                    entities while growing alongside a strong, collaborative team.</p>
+            </div>
+            <div class="career-grid">
+                <article class="career-card reveal-slide-up">
+                    <h3>Meaningful Work</h3>
+                    <p>Support businesses at critical stages of growth with practical governance and compliance
+                        guidance.</p>
+                </article>
+                <article class="career-card reveal-slide-up">
+                    <h3>Mentorship</h3>
+                    <p>Learn from experienced practitioners and work on real transactions with senior team members.</p>
+                </article>
+                <article class="career-card reveal-slide-up">
+                    <h3>Growth-minded Culture</h3>
+                    <p>Develop your expertise in a fast-moving, collaborative and high-accountability setting.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="open-roles reveal-fade">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Application Form</span>
+                <h2 class="section-title">Share your details and we will get in touch.</h2>
+                <p class="section-subtitle">We welcome applications from professionals with a strong sense of ownership
+                    and a commitment to excellence. Please fill in the form below and we will review your profile.</p>
+            </div>
+
+            <div class="application-card reveal-slide-up">
+                <form action="https://api.web3forms.com/submit" method="post" class="career-form" id="careerForm">
+                    <input type="hidden" name="access_key" value="9f7201b1-db31-4e74-9757-f4235291b8e9">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="careerName">Full Name *</label>
+                            <input type="text" id="careerName" name="name" required placeholder="Your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="careerEmail">Email Address *</label>
+                            <input type="email" id="careerEmail" name="email" required placeholder="your@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="careerPhone">Phone Number *</label>
+                            <input type="tel" id="careerPhone" name="phone" required placeholder="+91 98765 43210">
+                        </div>
+                        <div class="form-group">
+                            <label for="careerLocation">Current Location</label>
+                            <input type="text" id="careerLocation" name="location" placeholder="Mumbai, India">
+                        </div>
+                        <div class="form-group">
+                            <label for="careerExperience">Years of Experience</label>
+                            <input type="text" id="careerExperience" name="experience" placeholder="3+ years">
+                        </div>
+                        <div class="form-group">
+                            <label for="careerDomain">Area of Interest</label>
+                            <input type="text" id="careerDomain" name="domain"
+                                placeholder="Corporate Governance / FEMA / Startup Advisory">
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="careerMessage">Tell us about yourself *</label>
+                        <textarea id="careerMessage" name="message" rows="5" required
+                            placeholder="Briefly share your background, strengths, and why you would like to join MHA."></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="careerLinkedIn">LinkedIn Profile</label>
+                        <input type="url" id="careerLinkedIn" name="linkedin"
+                            placeholder="https://linkedin.com/in/your-profile">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <span>Submit Application</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                    <div id="careerFormStatus" class="form-status-wrapper" aria-live="polite"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="career-cta-band reveal-fade">
+        <div class="container">
+            <div class="cta-band-card reveal-slide-up">
+                <h2>Interested in joining us?</h2>
+                <p>We review every application carefully. If your profile aligns with our practice, we will reach out to
+                    you directly.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MIHEN HALANI & ASSOCIATES</h3>
+                    <p>Practicing Company Secretaries</p>
+                    <p class="footer-tagline">Excellence in Corporate Governance Since 2012</p>
+                    <p style="margin-top: 1.5rem;">Serving 1,000+ clients globally with expertise in fundraising,
+                        structuring, and compliance.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="career.html">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Expertise</h4>
+                    <ul>
+                        <li><a href="#services">IPO & Fundraising</a></li>
+                        <li><a href="#services">SEBI Compliance</a></li>
+                        <li><a href="#services">FEMA Advisory</a></li>
+                        <li><a href="#services">M&A Structuring</a></li>
+                        <li><a href="#services">Corporate Setup</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> 022 4516 5109</p>
+                    <p><i class="fas fa-envelope"></i> compliance@mha-cs.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Mumbai, Maharashtra, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p id="currentYearText">&copy; <span id="currentYear"></span> Mihen Halani & Associates. All rights
+                    reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
