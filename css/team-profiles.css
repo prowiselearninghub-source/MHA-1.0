@@ -1,1 +1,478 @@
-/* Team profile styles are unified in style.css for design consistency */
+.team-cards-track {
+    position: relative;
+}
+
+.team-scrollytelling-section {
+    position: relative;
+    background: linear-gradient(180deg, #fffefb 0%, #f9f5ee 100%);
+    width: 100%;
+    overflow: visible;
+}
+
+/* Horizontal Slider layout on desktop */
+@media (min-width: 1025px) {
+    .team-scrollytelling-section {
+        padding: 15px 0 95px 0;
+    }
+
+    .team-sticky-wrapper {
+        position: relative;
+        width: 100%;
+    }
+
+    .team-scrolly-layout {
+        display: grid;
+        grid-template-columns: 350px minmax(0, 1fr);
+        gap: 3.5rem;
+        width: 100%;
+        align-items: center;
+    }
+
+    .team-scrolly-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-right: 1.5rem;
+        border-right: 1px solid rgba(18, 38, 63, 0.08);
+    }
+
+    .team-scrolly-right {
+        position: relative;
+        width: 100%;
+        min-width: 0;
+        overflow: visible;
+        padding-top: 4.5rem;
+    }
+
+    .team-cards-viewport {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        /* Firefox */
+    }
+
+    .team-cards-viewport::-webkit-scrollbar {
+        display: none;
+        /* Chrome/Safari */
+    }
+
+    .team-cards-track {
+        display: flex;
+        gap: 2.2rem;
+        padding: 1.5rem 0;
+        width: max-content;
+    }
+
+    .team-scrollytelling-section .team-profile-card {
+        scroll-snap-align: start;
+    }
+}
+
+/* Vertical Bullet List Navigation */
+.team-names-nav {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.team-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    font-weight: 500;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.team-nav-item .nav-bullet {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(18, 38, 63, 0.25);
+    background: transparent;
+    display: inline-block;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+
+.team-nav-item.active {
+    color: var(--primary-navy);
+    font-weight: 700;
+    transform: translateX(4px);
+}
+
+.team-nav-item.active .nav-bullet {
+    border-color: var(--accent-gold);
+    background: var(--accent-gold);
+    box-shadow: 0 0 0 4px rgba(197, 168, 128, 0.25);
+}
+
+/* Horizontal Profile Cards */
+.team-scrollytelling-section .team-profile-card {
+    flex: 0 0 360px;
+    height: 560px;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid rgba(18, 38, 63, 0.08);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 244, 236, 0.98));
+    box-shadow: 0 18px 42px rgba(18, 38, 63, 0.08);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+    transition:
+        transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.team-scrollytelling-section .team-profile-image-container {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    z-index: 0;
+    overflow: hidden;
+    background: linear-gradient(160deg, rgba(31, 142, 142, 0.08), rgba(200, 164, 106, 0.14));
+    border-bottom: 1px solid rgba(18, 38, 63, 0.06);
+}
+
+.team-scrollytelling-section .team-profile-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Avatar fallback for placeholders */
+.team-scrollytelling-section .team-profile-image-container.has-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(160deg, rgba(31, 142, 142, 0.1), rgba(200, 164, 106, 0.15));
+}
+
+.team-scrollytelling-section .team-profile-avatar-fallback {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+    border: 1px solid rgba(18, 38, 63, 0.08);
+    background: rgba(255, 255, 255, 0.86);
+    color: var(--primary-navy);
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    box-shadow: 0 18px 36px rgba(18, 38, 63, 0.1);
+}
+
+.team-scrollytelling-section .team-profile-card::after {
+    content: none;
+}
+
+.team-scrollytelling-section .team-profile-info {
+    position: relative;
+    z-index: 1;
+    padding: 1.6rem 1.6rem 1.7rem;
+    color: var(--primary-navy);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 244, 236, 0.98));
+}
+
+.team-scrollytelling-section .team-profile-details {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-top: 0.9rem;
+}
+
+.team-scrollytelling-section .team-profile-info h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.62rem;
+    font-family: var(--font-heading);
+    color: var(--primary-navy);
+    font-weight: 600;
+    line-height: 1.05;
+}
+
+.team-scrollytelling-section .team-profile-credentials {
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent-gold);
+    margin-bottom: 0.15rem;
+    font-weight: 700;
+}
+
+.team-scrollytelling-section .team-profile-specialization {
+    font-size: 0.94rem;
+    color: var(--text-medium);
+    margin-bottom: 0.55rem;
+    font-weight: 600;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    line-height: 1.55;
+}
+
+.team-scrollytelling-section .team-profile-specialization i {
+    color: var(--accent-gold);
+    margin-top: 0.16rem;
+}
+
+.team-scrollytelling-section .team-profile-experience {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-bottom: 1.05rem;
+    line-height: 1.55;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.team-scrollytelling-section .team-profile-experience i {
+    color: var(--accent-gold);
+}
+
+.team-scrollytelling-section .team-profile-expertise {
+    margin-bottom: 1.3rem;
+}
+
+.team-scrollytelling-section .team-profile-expertise h4 {
+    display: none;
+}
+
+.team-scrollytelling-section .expertise-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+.team-scrollytelling-section .expertise-tag {
+    font-size: 0.76rem;
+    padding: 0.34rem 0.68rem;
+    border-radius: 99px;
+    background: rgba(18, 38, 63, 0.05);
+    border: 1px solid rgba(18, 38, 63, 0.08);
+    color: var(--text-medium);
+    font-weight: 600;
+}
+
+.team-scrollytelling-section .view-profile-btn {
+    border: 1px solid rgba(18, 38, 63, 0.12);
+    background: rgba(18, 38, 63, 0.03);
+    color: var(--primary-navy);
+    padding: 0.78rem 1rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    transition: all 0.35s ease;
+    margin-top: auto;
+}
+
+.team-scrollytelling-section .view-profile-btn i {
+    font-size: 0.86rem;
+    transition: transform 0.28s ease;
+}
+
+.team-scrollytelling-section .view-profile-btn span {
+    flex: 1;
+    text-align: left;
+}
+
+/* Hover Actions */
+/* Hover Actions & Active Focus Card */
+.team-scrollytelling-section .team-profile-card:hover,
+.team-scrollytelling-section .team-profile-card.active-card {
+    transform: translateY(-12px);
+    border-color: rgba(197, 168, 128, 0.85);
+    box-shadow: 
+        inset 0 0 8px rgba(197, 168, 128, 0.35),
+        0 15px 30px rgba(11, 30, 54, 0.05),
+        0 0 15px rgba(255, 215, 0, 0.25),
+        0 0 30px rgba(212, 175, 55, 0.15),
+        0 0 50px rgba(200, 164, 106, 0.08);
+}
+
+.team-scrollytelling-section .team-profile-card:hover .team-profile-image-container img,
+.team-scrollytelling-section .team-profile-card.active-card .team-profile-image-container img {
+    transform: scale(1.04);
+}
+
+.team-scrollytelling-section .team-profile-card:hover .view-profile-btn,
+.team-scrollytelling-section .team-profile-card.active-card .view-profile-btn {
+    background: var(--primary-navy);
+    color: #ffffff;
+    border-color: var(--primary-navy);
+}
+
+.team-scrollytelling-section .team-profile-card:hover .view-profile-btn i,
+.team-scrollytelling-section .team-profile-card.active-card .view-profile-btn i {
+    transform: translateX(3px);
+}
+
+/* ==================== RESPONSIVE OVERRIDES ==================== */
+@media (max-width: 1024px) {
+    .team-scrollytelling-section {
+        padding: 10px 0 60px 0;
+    }
+
+    .team-scrolly-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .team-scrolly-left {
+        width: 100%;
+        border-right: none;
+        padding-right: 0;
+    }
+
+    .team-names-nav {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin: 1.5rem 0 0 0;
+    }
+
+    .team-nav-item {
+        padding: 0.5rem 1rem;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 38, 63, 0.08);
+        background: rgba(255, 255, 255, 0.6);
+        font-size: 0.84rem;
+    }
+
+    .team-nav-item .nav-bullet {
+        display: none;
+    }
+
+    .team-nav-item.active {
+        background: var(--primary-navy);
+        color: #ffffff !important;
+        border-color: var(--primary-navy);
+        transform: none;
+    }
+
+    .team-scrolly-right {
+        width: 100%;
+        margin: 0 -2rem;
+        padding: 0 2rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+    }
+
+    .team-cards-viewport {
+        overflow: visible;
+        width: 100%;
+    }
+
+    .team-cards-track {
+        display: flex;
+        gap: 1.25rem;
+        padding: 1rem 0;
+        width: max-content;
+    }
+
+    .team-scrollytelling-section .team-profile-card {
+        flex: 0 0 310px;
+        min-height: 490px;
+        scroll-snap-align: center;
+    }
+
+    .team-scrollytelling-section .team-profile-info {
+        padding: 1.35rem 1.15rem 1.25rem;
+    }
+
+    .team-scrollytelling-section .team-profile-info h3 {
+        font-size: 1.4rem;
+    }
+
+    .team-scrollytelling-section .team-profile-image-container {
+        height: 280px;
+    }
+}
+
+/* Arrow Navigation Button Styles */
+.team-scrolly-controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.team-scroll-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgba(18, 38, 63, 0.08);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--primary-navy);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.05rem;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 24px rgba(11, 30, 54, 0.08);
+    pointer-events: auto;
+    /* Re-enable clicks on the buttons */
+}
+
+@media (min-width: 1025px) {
+    .team-scrolly-controls {
+        top: 0;
+    }
+}
+
+@media (max-width: 1024px) {
+    .team-scrolly-controls {
+        position: static;
+        margin-bottom: 0.7rem;
+        justify-content: flex-end;
+    }
+
+    .team-scrolly-right {
+        padding-top: 0;
+    }
+}
+
+.team-scroll-btn:hover:not(:disabled) {
+    background: var(--primary-navy);
+    color: #ffffff;
+    border-color: var(--primary-navy);
+    transform: scale(1.08);
+    box-shadow: 0 12px 30px rgba(11, 30, 54, 0.16);
+}
+
+.team-scroll-btn:disabled {
+    opacity: 0;
+    pointer-events: none;
+}

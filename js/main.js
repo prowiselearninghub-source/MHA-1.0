@@ -387,15 +387,15 @@ document.addEventListener('DOMContentLoaded', function () {
             const sectionRect = approachSection.getBoundingClientRect();
             const containerRect = timelineContainer.getBoundingClientRect();
             const viewportHeight = window.innerHeight;
-            
+
             const isDesktop = window.innerWidth > 1024;
             let progress = 0;
-            
+
             if (isDesktop) {
                 // Pinning calculations: track scroll percentage of the section wrapper
                 const totalScrollable = sectionRect.height - viewportHeight;
                 const scrolled = -sectionRect.top;
-                
+
                 if (scrolled >= 0 && totalScrollable > 0) {
                     progress = Math.min(Math.max(scrolled / totalScrollable, 0), 1);
                 }
@@ -406,54 +406,54 @@ document.addEventListener('DOMContentLoaded', function () {
                     progress = Math.min(Math.max((triggerPoint - containerRect.top) / containerRect.height, 0), 1);
                 }
             }
-            
+
             // Dynamically align line track with center of nodes
             const node1 = approachCards[0].querySelector('.approach-node');
             const node3 = approachCards[approachCards.length - 1].querySelector('.approach-node');
             const timelineLine = document.querySelector('.approach-line');
-            
+
             if (node1 && node3 && timelineLine) {
                 const node1Rect = node1.getBoundingClientRect();
                 const node3Rect = node3.getBoundingClientRect();
-                
+
                 if (isDesktop) {
-                    const left = node1Rect.left + node1Rect.width/2 - containerRect.left;
-                    const right = containerRect.right - (node3Rect.left + node3Rect.width/2);
-                    const top = node1Rect.top + node1Rect.height/2 - containerRect.top;
-                    
+                    const left = node1Rect.left + node1Rect.width / 2 - containerRect.left;
+                    const right = containerRect.right - (node3Rect.left + node3Rect.width / 2);
+                    const top = node1Rect.top + node1Rect.height / 2 - containerRect.top;
+
                     timelineLine.style.left = `${left}px`;
                     timelineLine.style.right = `${right}px`;
                     timelineLine.style.top = `${top}px`;
                     timelineLine.style.bottom = 'auto';
                     timelineLine.style.width = 'auto';
                     timelineLine.style.height = '2px';
-                    
+
                     timelineProgress.style.width = `${progress * 100}%`;
                     timelineProgress.style.height = '100%';
                 } else {
-                    const top = node1Rect.top + node1Rect.height/2 - containerRect.top;
-                    const bottom = containerRect.bottom - (node3Rect.top + node3Rect.height/2);
-                    const left = node1Rect.left + node1Rect.width/2 - containerRect.left;
-                    
+                    const top = node1Rect.top + node1Rect.height / 2 - containerRect.top;
+                    const bottom = containerRect.bottom - (node3Rect.top + node3Rect.height / 2);
+                    const left = node1Rect.left + node1Rect.width / 2 - containerRect.left;
+
                     timelineLine.style.left = `${left}px`;
                     timelineLine.style.right = 'auto';
                     timelineLine.style.top = `${top}px`;
                     timelineLine.style.bottom = `${bottom}px`;
                     timelineLine.style.width = '2px';
                     timelineLine.style.height = 'auto';
-                    
+
                     timelineProgress.style.height = `${progress * 100}%`;
                     timelineProgress.style.width = '100%';
                 }
             }
-            
+
             approachCards.forEach((card, index) => {
                 const step = index + 1;
                 let active = false;
                 if (step === 1 && progress > 0.05) active = true;
                 if (step === 2 && progress > 0.45) active = true;
                 if (step === 3 && progress > 0.85) active = true;
-                
+
                 if (active) {
                     card.classList.add('active');
                 } else {
@@ -461,7 +461,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         };
-        
+
         window.addEventListener('scroll', handleTimelineScroll, { passive: true });
         window.addEventListener('resize', handleTimelineScroll, { passive: true });
         handleTimelineScroll();
@@ -474,20 +474,20 @@ document.addEventListener('DOMContentLoaded', function () {
         const handleTransactionScroll = () => {
             const rect = transactionBox.getBoundingClientRect();
             const viewportHeight = window.innerHeight;
-            
+
             // Calculate progress based on box visibility in viewport
             const totalScrollable = rect.height + viewportHeight;
             const scrolled = viewportHeight - rect.top;
-            
+
             let progress = 0;
             if (scrolled >= 0 && scrolled <= totalScrollable) {
                 progress = scrolled / totalScrollable;
             } else if (scrolled > totalScrollable) {
                 progress = 1;
             }
-            
+
             transactionProgress.style.height = `${progress * 100}%`;
-            
+
             // Activate cards sequentially as scroll progress fills down past them
             const cards = transactionBox.querySelectorAll('.transaction-card');
             cards.forEach((card, index) => {

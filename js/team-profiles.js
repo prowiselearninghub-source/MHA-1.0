@@ -30,54 +30,279 @@ function openFounderProfileModal() {
     }
 }
 
-// Load and display team profiles
+// Load and display team profiles for horizontal scrollytelling
 function loadTeamProfiles() {
-    const teamGrid = document.getElementById('teamProfilesGrid');
-    if (!teamGrid) return;
+    const namesNav = document.getElementById('teamNamesNav');
+    const cardsTrack = document.getElementById('teamCardsTrack');
+    
+    if (!namesNav || !cardsTrack) return;
 
-    teamGrid.innerHTML = '';
+    namesNav.innerHTML = '';
+    cardsTrack.innerHTML = '';
 
-    teamMembersData.forEach(member => {
-        const card = createTeamProfileCard(member);
-        teamGrid.appendChild(card);
-        
-        // Register dynamically created card with our viewport observer
-        if (window.revealObserver) {
-            window.revealObserver.observe(card);
-        }
+    teamMembersData.forEach((member, index) => {
+        // 1. Create navigation item
+        const navItem = document.createElement('li');
+        navItem.className = 'team-nav-item';
+        if (index === 0) navItem.classList.add('active');
+        navItem.setAttribute('data-index', index);
+        navItem.innerHTML = `
+            <span class="nav-bullet"></span>
+            <span class="nav-name">${member.name}</span>
+        `;
+        namesNav.appendChild(navItem);
+
+        // 2. Create card element
+        const card = createTeamProfileCard(member, index);
+        cardsTrack.appendChild(card);
     });
+
+    // Initialize layout scripts
+    initTeamScrollytelling();
 }
 
 // Create team profile card
-function createTeamProfileCard(member) {
+function createTeamProfileCard(member, index) {
     const card = document.createElement('div');
-    card.className = 'team-profile-card reveal-slide-up';
+    card.className = 'team-profile-card';
+    card.setAttribute('data-card-index', index);
     card.onclick = () => openTeamMemberModal(member);
 
-    // Limit expertise to first 3 items for card display
     const limitedExpertise = member.expertise.slice(0, 3);
+    const fallbackInitials = member.name
+        .split(' ')
+        .map(part => part.charAt(0))
+        .join('')
+        .slice(0, 2)
+        .toUpperCase();
+    const hasImage = Boolean(member.image) && !member.image.includes('member-placeholder');
+    
+    const imageMarkup = hasImage
+        ? `<img src="${member.image}" alt="${member.name}">`
+        : `<div class="team-profile-avatar-fallback" aria-hidden="true">${fallbackInitials}</div>`;
 
     card.innerHTML = `
-        <div class="team-profile-image-container">
-            <img src="${member.image}" alt="${member.name}">
+        <div class="team-profile-image-container${hasImage ? '' : ' has-fallback'}">
+            ${imageMarkup}
         </div>
         <div class="team-profile-info">
             <h3>${member.name}</h3>
             <p class="team-profile-credentials">${member.credentials}</p>
-            <p class="team-profile-specialization"><i class="fas fa-briefcase"></i> ${member.specialization}</p>
-            <p class="team-profile-experience"><i class="fas fa-clock"></i> ${member.experience} Experience</p>
-            <div class="team-profile-expertise">
-                <h4>Key Expertise:</h4>
-                <div class="expertise-list">
-                    ${limitedExpertise.map(exp => `<span class="expertise-tag">${exp}</span>`).join('')}
-                    ${member.expertise.length > 3 ? `<span class="expertise-tag">+${member.expertise.length - 3} more</span>` : ''}
-                </div>
+            <div class="team-profile-details">
+                <p class="team-profile-specialization"><i class="fas fa-briefcase"></i> ${member.specialization}</p>
+                <p class="team-profile-experience"><i class="fas fa-clock"></i> ${member.experience} Experience</p>
+                <button class="view-profile-btn">
+                    <span>View Full Profile</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
-            <button class="view-profile-btn">View Full Profile</button>
         </div>
     `;
 
+    // Handle broken images
+    const imageContainer = card.querySelector('.team-profile-image-container');
+    const image = imageContainer.querySelector('img');
+
+    if (image) {
+        const applyFallback = () => {
+            imageContainer.classList.add('has-fallback');
+            imageContainer.innerHTML = `<div class="team-profile-avatar-fallback" aria-hidden="true">${fallbackInitials}</div>`;
+        };
+
+        image.addEventListener('error', applyFallback, { once: true });
+
+        if (image.complete && image.naturalWidth === 0) {
+            applyFallback();
+        }
+    }
+
     return card;
+}
+
+// Scrollytelling engine using horizontal snap scroll and arrow navigation
+function initTeamScrollytelling() {
+    const track = document.getElementById('teamCardsTrack');
+    const rightContainer = document.querySelector('.team-cards-viewport');
+    const navItems = document.querySelectorAll('.team-nav-item');
+    const originalCards = document.querySelectorAll('.team-profile-card');
+    const prevBtn = document.getElementById('teamPrevBtn');
+    const nextBtn = document.getElementById('teamNextBtn');
+    
+    if (!track || !rightContainer || originalCards.length === 0) return;
+
+    const n = originalCards.length;
+
+    // 1. Clone all cards once to create a double list for seamless looping
+    originalCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.onclick = card.onclick;
+        track.appendChild(clone);
+    });
+
+    // 2. Query all cards (original + clones)
+    const allCards = document.querySelectorAll('.team-profile-card');
+
+    let currentActiveIndex = 0;
+    let autoplayTimer = null;
+    const AUTOPLAY_DELAY = 2500; // 2.5 seconds per card
+
+    // Helper: update active states
+    const updateActiveIndex = (activeIndex) => {
+        currentActiveIndex = activeIndex % n;
+        navItems.forEach((item, idx) => {
+            item.classList.toggle('active', idx === currentActiveIndex);
+        });
+        allCards.forEach((card, idx) => {
+            card.classList.toggle('active-card', (idx % n) === currentActiveIndex);
+        });
+    };
+
+    const containerPadding = () => window.innerWidth > 1024 ? 0 : 32;
+
+    // Helper: scroll to specific index in allCards array
+    const scrollToCardElement = (elementIndex, smooth = true) => {
+        const targetCard = allCards[elementIndex];
+        if (targetCard) {
+            rightContainer.scrollTo({
+                left: targetCard.offsetLeft - containerPadding(),
+                behavior: smooth ? 'smooth' : 'auto'
+            });
+        }
+    };
+
+    // Helper: get current scroll index in allCards array
+    const getCurrentScrollIndex = () => {
+        const scrollLeft = rightContainer.scrollLeft;
+        let closestIndex = 0;
+        let minDiff = Infinity;
+        allCards.forEach((card, idx) => {
+            const cardLeft = card.offsetLeft;
+            const diff = Math.abs(cardLeft - scrollLeft);
+            if (diff < minDiff) {
+                minDiff = diff;
+                closestIndex = idx;
+            }
+        });
+        return closestIndex;
+    };
+
+    // Autoplay controls
+    const startAutoplay = () => {
+        if (autoplayTimer) return;
+        autoplayTimer = setInterval(() => {
+            const modal = document.getElementById('teamMemberModal');
+            if (modal && modal.classList.contains('active')) {
+                return;
+            }
+            
+            const closestIndex = getCurrentScrollIndex();
+            scrollToCardElement(closestIndex + 1, true);
+        }, AUTOPLAY_DELAY);
+    };
+
+    const stopAutoplay = () => {
+        if (autoplayTimer) {
+            clearInterval(autoplayTimer);
+            autoplayTimer = null;
+        }
+    };
+
+    const resetAutoplay = () => {
+        stopAutoplay();
+        startAutoplay();
+    };
+
+    // Navigation Item Click Binding (maps original card index `idx` to elementIndex `idx`)
+    navItems.forEach((item, idx) => {
+        item.onclick = (e) => {
+            e.preventDefault();
+            scrollToCardElement(idx, true);
+            resetAutoplay();
+        };
+    });
+
+    // Control Buttons Click Binding
+    if (prevBtn) {
+        prevBtn.onclick = (e) => {
+            e.preventDefault();
+            let closestIndex = getCurrentScrollIndex();
+            if (closestIndex <= 0) {
+                // Instantly snap to duplicate set
+                closestIndex = n;
+                rightContainer.scrollTo({
+                    left: allCards[n].offsetLeft - containerPadding(),
+                    behavior: 'auto'
+                });
+            }
+            scrollToCardElement(closestIndex - 1, true);
+            resetAutoplay();
+        };
+    }
+
+    if (nextBtn) {
+        nextBtn.onclick = (e) => {
+            e.preventDefault();
+            const closestIndex = getCurrentScrollIndex();
+            scrollToCardElement(closestIndex + 1, true);
+            resetAutoplay();
+        };
+    }
+
+    let isSnapping = false;
+
+    // Scroll listener to update active index dynamically and perform seamless snaps
+    rightContainer.addEventListener('scroll', () => {
+        if (isSnapping) return;
+
+        const scrollLeft = rightContainer.scrollLeft;
+        const indexNLeft = allCards[n].offsetLeft - containerPadding();
+        const index0Left = allCards[0].offsetLeft - containerPadding();
+
+        // Snapping logic for infinite loop:
+        // If we reach or cross the clone set start (index n), instantly jump back to original start (index 0)
+        if (scrollLeft >= indexNLeft - 5) {
+            isSnapping = true;
+            const offsetDiff = indexNLeft - index0Left;
+            rightContainer.scrollTo({
+                left: scrollLeft - offsetDiff,
+                behavior: 'auto'
+            });
+            updateActiveIndex(0);
+            setTimeout(() => { isSnapping = false; }, 50);
+            return;
+        }
+
+        // Calculate closest card index
+        let closestIndex = 0;
+        let minDiff = Infinity;
+        allCards.forEach((card, idx) => {
+            const cardLeft = card.offsetLeft;
+            const diff = Math.abs(cardLeft - scrollLeft);
+            if (diff < minDiff) {
+                minDiff = diff;
+                closestIndex = idx;
+            }
+        });
+
+        const activeIndex = closestIndex % n;
+        if (activeIndex !== currentActiveIndex) {
+            updateActiveIndex(activeIndex);
+        }
+    }, { passive: true });
+
+    // Pause autoplay on mouse hover / touch interaction
+    rightContainer.addEventListener('mouseenter', stopAutoplay);
+    rightContainer.addEventListener('mouseleave', startAutoplay);
+    rightContainer.addEventListener('touchstart', stopAutoplay, { passive: true });
+    rightContainer.addEventListener('touchend', startAutoplay, { passive: true });
+
+    // Immediately start at the actual first card
+    rightContainer.scrollTo({
+        left: allCards[0].offsetLeft - containerPadding(),
+        behavior: 'auto'
+    });
+    updateActiveIndex(0);
+    startAutoplay();
 }
 
 // Open team member detail modal
