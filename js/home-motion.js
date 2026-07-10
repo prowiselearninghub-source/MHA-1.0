@@ -8,7 +8,10 @@ function setActiveStoryState(index, steps, panels) {
     });
 
     panels.forEach((panel, panelIndex) => {
-        panel.classList.toggle('active', panelIndex === index);
+        const isCurrent = panelIndex === index;
+
+        panel.classList.toggle('active', isCurrent);
+        panel.classList.toggle('current', isCurrent);
     });
 }
 
@@ -40,14 +43,18 @@ function initStoryScene() {
 
         const step0Center = getOffsetTopRelativeToZone(steps[0]) + steps[0].offsetHeight / 2;
         const stepLastCenter = getOffsetTopRelativeToZone(steps[steps.length - 1]) + steps[steps.length - 1].offsetHeight / 2;
+        const startBuffer = steps[0].offsetHeight * 0.45;
+        const endBuffer = steps[steps.length - 1].offsetHeight * 0.45;
+        const progressStart = step0Center - startBuffer;
+        const progressEnd = stepLastCenter + endBuffer;
 
-        const range = stepLastCenter - step0Center;
+        const range = progressEnd - progressStart;
         let progress = 0;
         if (range > 0) {
-            const rawProgress = (currentCenterOffset - step0Center) / range;
+            const rawProgress = (currentCenterOffset - progressStart) / range;
             progress = clamp(rawProgress, 0, 1);
         } else {
-            progress = currentCenterOffset >= step0Center ? 1 : 0;
+            progress = currentCenterOffset >= progressStart ? 1 : 0;
         }
 
         const stage = Math.min(steps.length - 1, Math.floor(progress * steps.length));
