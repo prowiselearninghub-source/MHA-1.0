@@ -211,7 +211,8 @@ async function initMotionEnhancements() {
     }
 
     // 2. Interactive enhancements for What We Bring (mosaic cards)
-    const mosaicCards = Array.from(document.querySelectorAll('.mosaic-card'));
+    // Only target cards inside a .mosaic-grid (ignores our new .carousel-wrapper cards)
+    const mosaicCards = Array.from(document.querySelectorAll('.mosaic-grid .mosaic-card'));
     if (mosaicCards.length) {
         // Isolate from main.js reveal observer
         mosaicCards.forEach(card => {

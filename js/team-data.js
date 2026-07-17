@@ -22,8 +22,8 @@ const teamMembersData = [
         id: 2,
         name: "Milin Ramani",
         credentials: "CS, LLB, B.Com",
-        image: "images/team/milin-ramani-new.jpg",
-        enhancedImage: "images/team/milin-ramani-new.jpg",
+        image: "images/team/milin_ramani.jpg",
+        enhancedImage: "images/team/milin_ramani.jpg",
         specialization: "SEBI Compliance, Listed Entities & Corporate Governance",
         experience: "10+ years",
         expertise: [

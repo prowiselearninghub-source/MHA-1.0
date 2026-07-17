@@ -1,37 +1,53 @@
 :root {
-    /* Formal Corporate Editorial Palette (McKinsey/BCG Inspired) */
-    --primary-navy: #0B1E36;
-    /* Deep authoritative slate navy */
-    --hover-navy: #152E4C;
-    --accent-gold: #C5A880;
-    /* Champagne Gold accents */
-    --bg-alabaster: #FDFDFB;
-    /* Warm Alabaster paper background */
-    --bg-sand: #F7F6F0;
-    /* Soft Sand alternate backdrop */
-    --border-tint: #E5E2D6;
-    /* Warm subtle border lines */
+    /* =========================================================
+       GLOBAL SITE THEME 
+       Change these to update the overall website color scheme
+       ========================================================= */
+    --theme-primary: #1ABC9C;
+    /* Green Turquoise */
+    --theme-primary-soft: rgba(26, 188, 156, 0.15);
+    --theme-primary-dark: #11725F;
+    /* Deep Green Turquoise */
+    --theme-primary-darkest: #08392F;
+    /* Very Deep Green Turquoise for text/navy-replacement */
+    --theme-glass-white: rgba(255, 255, 255, 0.85);
+    /* Premium glass white */
+    --theme-glass-white-solid: #FDFDFB;
+    /* For opaque fallbacks */
+    --theme-glass-border: rgba(255, 255, 255, 0.4);
+
+    --theme-navy: var(--theme-primary-darkest);
+    --theme-accent-gold: var(--theme-primary);
+
+    /* Formal Corporate Editorial Palette */
+    --primary-navy: var(--theme-navy);
+    --hover-navy: #0D5143;
+    /* Dark Green Teal for hover */
+    --accent-gold: var(--theme-accent-gold);
+    --bg-alabaster: var(--theme-glass-white-solid);
+    --bg-sand: var(--theme-primary-soft);
+    --border-tint: rgba(26, 188, 156, 0.2);
 
     /* Mapped variables to avoid breaking other files */
-    --logo-teal: #2D9B9B;
-    --primary-turquoise: var(--logo-teal);
-    --secondary-turquoise: #4CB5B5;
+    --logo-teal: var(--theme-primary);
+    --primary-turquoise: var(--theme-primary);
+    --secondary-turquoise: #409C9C;
     --light-turquoise: #6DCFCF;
-    --dark-turquoise: #1F7373;
-    --accent-teal: var(--logo-teal);
-    --gold: var(--accent-gold);
+    --dark-turquoise: var(--theme-primary-dark);
+    --accent-teal: var(--theme-primary);
+    --gold: var(--theme-accent-gold);
     --gold-light: var(--bg-sand);
 
     /* Neutral Colors */
     --white: #FFFFFF;
     --off-white: var(--bg-alabaster);
-    --light-gray: #F1F3F5;
-    --medium-gray: #E2E8F0;
-    --border-gray: #CBD5E1;
-    --text-light: #5C6B73;
-    --text-medium: #3A4750;
-    --text-dark: var(--primary-navy);
-    --navy-dark: var(--primary-navy);
+    --light-gray: rgba(26, 188, 156, 0.05);
+    --medium-gray: rgba(26, 188, 156, 0.1);
+    --border-gray: rgba(26, 188, 156, 0.3);
+    --text-light: #4A7A7A;
+    --text-medium: #2B5757;
+    --text-dark: var(--theme-primary-darkest);
+    --navy-dark: var(--theme-primary-darkest);
     --navy-blue: var(--hover-navy);
 
     /* Typography - Elite Serif + Clean Sans-Serif Pair */
@@ -48,13 +64,31 @@
     --spacing-3xl: 6rem;
 
     /* Transition & Minimal Shadows */
-    --shadow-sm: 0 1px 3px rgba(11, 30, 54, 0.04);
-    --shadow-md: 0 10px 30px rgba(11, 30, 54, 0.02);
-    --shadow-lg: 0 20px 45px rgba(11, 30, 54, 0.04);
-    --shadow-xl: 0 30px 60px rgba(11, 30, 54, 0.06);
+    --shadow-sm: 0 1px 3px rgba(8, 57, 47, 0.04);
+    --shadow-md: 0 10px 30px rgba(8, 57, 47, 0.02);
+    --shadow-lg: 0 20px 45px rgba(8, 57, 47, 0.04);
+    --shadow-xl: 0 30px 60px rgba(8, 57, 47, 0.06);
     --transition-fast: 0.25s ease;
     --transition-smooth: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     --transition-slow: 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    /* Variables for home-premium.css */
+    --home-navy: var(--theme-primary-darkest);
+    --home-navy-soft: #1B4E4E;
+    --home-teal: var(--theme-primary);
+    --home-teal-soft: var(--theme-primary-soft);
+    --home-gold: var(--theme-accent-gold);
+    --home-gold-soft: var(--theme-primary-soft);
+    --home-cream: var(--theme-glass-white-solid);
+    --home-surface: var(--theme-glass-white);
+    --home-surface-alt: rgba(255, 255, 255, 0.95);
+    --home-line: rgba(8, 57, 47, 0.1);
+    --home-line-strong: var(--theme-glass-border);
+    --home-text: var(--theme-primary-darkest);
+    --home-text-soft: #386E6E;
+    --home-shadow-sm: 0 16px 36px rgba(8, 57, 47, 0.06);
+    --home-shadow-lg: 0 38px 90px rgba(8, 57, 47, 0.11);
+    --home-radius: 28px;
 }
 
 /* ==================== GLOBAL RESET & BASE ==================== */
@@ -79,7 +113,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: var(--bg-alabaster);
-    overflow-x: hidden;
     font-size: 16px;
     font-weight: 400;
 }
@@ -854,7 +887,8 @@ section {
 
 @media (min-width: 1025px) {
     .approach-section {
-        height: 300vh; /* Scroll-pinning track height on desktop */
+        height: 300vh;
+        /* Scroll-pinning track height on desktop */
         padding: 0;
     }
 }
@@ -866,14 +900,15 @@ section {
 @media (min-width: 1025px) {
     .approach-sticky-wrapper {
         position: sticky;
-        top: 80px; /* Aligns exactly below the fixed navbar */
+        top: 80px;
+        /* Aligns exactly below the fixed navbar */
         height: calc(100vh - 80px);
         display: flex;
         flex-direction: column;
         justify-content: center;
         overflow: hidden;
     }
-    
+
     .approach-sticky-wrapper .section-header {
         margin-bottom: 0;
     }
@@ -881,20 +916,23 @@ section {
 
 .approach-timeline-container {
     position: relative;
-    margin-top: 2.5rem; /* Mobile default */
+    margin-top: 2.5rem;
+    /* Mobile default */
     width: 100%;
 }
 
 @media (min-width: 1025px) {
     .approach-timeline-container {
-        margin-top: 5rem; /* Spacious center gap below header */
+        margin-top: 5rem;
+        /* Spacious center gap below header */
     }
 }
 
 /* Horizontal Timeline Line for Desktop */
 .approach-line {
     position: absolute;
-    top: 0; /* Aligned exactly on the top border of the cards grid */
+    top: 0;
+    /* Aligned exactly on the top border of the cards grid */
     left: 10%;
     right: 10%;
     height: 2px;
@@ -925,10 +963,10 @@ section {
     border: 1px solid var(--border-tint);
     padding: 3rem 2rem;
     opacity: 0.35;
-    transition: opacity 0.5s ease, 
-                border-color 0.5s ease,
-                background-color 0.5s ease,
-                transform 0.5s ease;
+    transition: opacity 0.5s ease,
+        border-color 0.5s ease,
+        background-color 0.5s ease,
+        transform 0.5s ease;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -1022,6 +1060,7 @@ section {
     .approach-timeline-container {
         margin-top: 3.5rem;
     }
+
     .approach-card {
         padding: 2.25rem 2rem;
     }
@@ -1234,10 +1273,10 @@ section {
     padding: 2.25rem 2rem;
     opacity: 0.35;
     transform: translateY(15px);
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-                border-color 0.4s ease, 
-                background-color 0.4s ease, 
-                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.4s ease,
+        background-color 0.4s ease,
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -1308,7 +1347,7 @@ section {
         padding: 3rem 1.75rem 3rem 2.75rem;
         margin: 3.5rem auto;
     }
-    
+
     .transaction-cards-grid {
         grid-template-columns: 1fr;
         gap: 1.25rem;
@@ -2453,7 +2492,7 @@ section {
         padding: 3rem 2rem;
         gap: 2rem;
         transition: left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: 1px solid rgba(225, 215, 215, 0.08);
     }
 
     .nav-menu.active {
@@ -2692,7 +2731,7 @@ section {
         grid-template-columns: 1fr;
         gap: 2.5rem;
     }
-    
+
     .premium-profile-sidebar {
         max-width: 320px;
         margin: 0 auto;
@@ -2704,7 +2743,7 @@ section {
     .premium-profile-header h2 {
         font-size: 2.2rem;
     }
-    
+
     .premium-expertise-grid {
         grid-template-columns: 1fr;
     }
