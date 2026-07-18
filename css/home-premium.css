@@ -241,7 +241,7 @@ body.home-page {
     display: block;
     overflow: hidden;
     min-height: 100vh;
-    padding: 150px 0 0;
+    padding: 90px 0 0;
     background: url('../images/hero-meeting.jpg') right center / cover no-repeat;
 }
 
@@ -338,14 +338,14 @@ body.home-page {
 
 .home-page .hero-proof-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-    margin-top: 2.4rem;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.2rem;
+    margin-top: 1rem;
 }
 
 .home-page .hero-proof-card {
-    padding: 1.4rem 1.3rem;
-    border-radius: 22px;
+    padding: 1.1rem 1rem;
+    border-radius: 20px;
     border: 1px solid rgba(8, 57, 47, 0.08);
     background: rgba(255, 255, 255, 0.78);
     backdrop-filter: blur(14px);
@@ -354,9 +354,9 @@ body.home-page {
 
 .home-page .hero-proof-card p {
     margin: 0;
-    color: var(--home-text-soft);
-    font-size: 0.88rem;
-    line-height: 1.65;
+    color: #000;
+    font-size: 0.82rem;
+    line-height: 1.5;
 }
 
 .home-page .hero-proof-value {
@@ -368,19 +368,21 @@ body.home-page {
 
 .home-page .metric-number,
 .home-page .floating-metric-value {
-    font-size: 2.35rem;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
     font-weight: 700;
-    line-height: 0.95;
-    color: var(--home-navy);
+    line-height: 1;
+    color: #000;
     font-family: var(--font-heading);
 }
 
 .home-page .metric-suffix,
 .home-page .floating-metric-unit {
-    color: var(--home-gold);
-    font-size: 1.2rem;
-    line-height: 1.2;
-    margin-top: 0.1rem;
+    color: #000;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    line-height: 1;
+    margin-top: 0;
+    font-weight: 700;
+    font-family: var(--font-heading);
 }
 
 .home-page .hero-proof-card-accent {
@@ -389,8 +391,13 @@ body.home-page {
 
 .home-page .hero-proof-label {
     display: inline-block;
-    margin-bottom: 0.7rem;
-    color: var(--home-teal);
+    margin-bottom: 0.5rem;
+    color: #000;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    font-family: var(--font-heading);
+    overflow-wrap: break-word;
 }
 
 .home-page .hero-visual-shell {
@@ -634,7 +641,8 @@ body.home-page {
 .home-page .story-sticky-shell {
     display: grid;
     grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-    gap: 5rem; /* Increased left/right spacing between columns */
+    gap: 5rem;
+    /* Increased left/right spacing between columns */
     align-items: start;
 }
 
@@ -709,7 +717,8 @@ body.home-page {
 .home-page .story-visual-column {
     position: sticky;
     top: 122px;
-    height: calc(100vh - 150px); /* Responsive to viewport so it never cuts off */
+    height: calc(100vh - 150px);
+    /* Responsive to viewport so it never cuts off */
     max-height: 640px;
     min-height: 480px;
     padding-top: 0.25rem;
@@ -847,15 +856,16 @@ body.home-page {
 /* --- 3D Carousel Styles for What We Bring --- */
 .home-page .carousel-wrapper {
     width: 100%;
-    height: 480px; 
+    height: 480px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 3rem 0;
     perspective: 1200px;
-    overflow: visible; 
-    pointer-events: none; /* Lock interactivity as requested */
+    overflow: visible;
+    pointer-events: none;
+    /* Lock interactivity as requested */
 }
 
 .home-page .carousel-inner {
@@ -872,6 +882,7 @@ body.home-page {
     from {
         transform: rotateX(-6deg) rotateY(0deg);
     }
+
     to {
         transform: rotateX(-6deg) rotateY(360deg);
     }
@@ -880,11 +891,25 @@ body.home-page {
 /* Removed hover pause logic */
 
 /* Hardcoded 3D Positioning for absolute cross-browser reliability */
-.home-page .carousel-wrapper .mosaic-card:nth-child(1) { transform: rotateY(0deg) translateZ(360px); }
-.home-page .carousel-wrapper .mosaic-card:nth-child(2) { transform: rotateY(72deg) translateZ(360px); }
-.home-page .carousel-wrapper .mosaic-card:nth-child(3) { transform: rotateY(144deg) translateZ(360px); }
-.home-page .carousel-wrapper .mosaic-card:nth-child(4) { transform: rotateY(216deg) translateZ(360px); }
-.home-page .carousel-wrapper .mosaic-card:nth-child(5) { transform: rotateY(288deg) translateZ(360px); }
+.home-page .carousel-wrapper .mosaic-card:nth-child(1) {
+    transform: rotateY(0deg) translateZ(360px);
+}
+
+.home-page .carousel-wrapper .mosaic-card:nth-child(2) {
+    transform: rotateY(72deg) translateZ(360px);
+}
+
+.home-page .carousel-wrapper .mosaic-card:nth-child(3) {
+    transform: rotateY(144deg) translateZ(360px);
+}
+
+.home-page .carousel-wrapper .mosaic-card:nth-child(4) {
+    transform: rotateY(216deg) translateZ(360px);
+}
+
+.home-page .carousel-wrapper .mosaic-card:nth-child(5) {
+    transform: rotateY(288deg) translateZ(360px);
+}
 
 .home-page .carousel-wrapper .mosaic-card {
     position: absolute;
@@ -902,7 +927,7 @@ body.home-page {
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    
+
     /* Preserve Theme & Padding */
     background: rgba(255, 255, 255, 0.94);
     backdrop-filter: blur(8px);
@@ -932,6 +957,7 @@ body.home-page {
     padding: 0;
     background: transparent;
 }
+
 .home-page .carousel-wrapper .mosaic-card-image img {
     position: absolute;
     inset: 0;
@@ -940,17 +966,19 @@ body.home-page {
     object-fit: cover;
     z-index: 1;
 }
+
 .home-page .carousel-wrapper .mosaic-card-image .mosaic-image-copy {
     position: relative;
     z-index: 2;
     padding: 1.6rem;
-    background: linear-gradient(180deg, transparent 0%, rgba(8,57,47,0.95) 100%);
+    background: linear-gradient(180deg, transparent 0%, rgba(8, 57, 47, 0.95) 100%);
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
 }
-.home-page .carousel-wrapper .mosaic-card-image h3, 
+
+.home-page .carousel-wrapper .mosaic-card-image h3,
 .home-page .carousel-wrapper .mosaic-card-image .eyebrow {
     color: #ffffff;
 }
@@ -1248,7 +1276,7 @@ body.home-page {
     background: transparent;
     backdrop-filter: none;
     padding: 0;
-    text-shadow: 
+    text-shadow:
         0 0 10px rgba(0, 0, 0, 0.95),
         0 0 20px rgba(0, 0, 0, 0.85),
         0 0 35px rgba(0, 0, 0, 0.75),
@@ -1682,8 +1710,10 @@ body.home-page {
     .home-page .story-copy-column {
         position: relative;
         padding-left: 0;
-        gap: 45vh; /* Dramatically increases scroll time/spacing between steps */
-        padding-bottom: 30vh; /* Keeps the last step visible longer before scrolling past */
+        gap: 45vh;
+        /* Dramatically increases scroll time/spacing between steps */
+        padding-bottom: 30vh;
+        /* Keeps the last step visible longer before scrolling past */
     }
 
     .home-page .story-progress-bar {
