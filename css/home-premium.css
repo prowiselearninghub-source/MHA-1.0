@@ -238,11 +238,12 @@ body.home-page {
 
 .home-page .home-hero {
     position: relative;
-    display: block;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     min-height: 100vh;
-    padding: 90px 0 0;
-    background: url('../images/hero-meeting.jpg') right center / cover no-repeat;
+    padding: 0 0 40px;
+    background: url('../images/hero-meeting.jpg') center center / cover no-repeat;
 }
 
 
@@ -289,6 +290,8 @@ body.home-page {
     grid-template-columns: minmax(0, 1fr) minmax(480px, 0.95fr);
     gap: 3.2rem;
     align-items: center;
+    flex: 1;
+    padding-top: 100px;
 }
 
 .home-page .hero-copy {
@@ -326,7 +329,8 @@ body.home-page {
 .home-page .hero-subtitle {
     max-width: 610px;
     margin: 0 0 2rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: #d1d5db;
+    font-weight: bold;
     font-size: 1.06rem;
     line-height: 1.85;
 }
@@ -336,11 +340,18 @@ body.home-page {
     gap: 0.95rem;
 }
 
+.home-page .floating-hero-cards {
+    position: relative;
+    z-index: 15;
+    padding: 0 15px;
+    margin-top: auto;
+    padding-bottom: 20px;
+}
+
 .home-page .hero-proof-grid {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 1.2rem;
-    margin-top: 1rem;
 }
 
 .home-page .hero-proof-card {
