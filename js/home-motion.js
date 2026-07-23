@@ -33,6 +33,8 @@ function initStoryScene() {
         pairs.forEach((pair, idx) => {
             if (idx !== newIndex) {
                 pair.classList.remove('active');
+                pair.style.display = 'none';
+                pair.style.position = 'absolute';
                 pair.style.opacity = '0';
                 pair.style.pointerEvents = 'none';
                 const leftCard = pair.querySelector('.story-left-card');
@@ -52,6 +54,8 @@ function initStoryScene() {
         const leftCard = activePair.querySelector('.story-left-card');
         const rightCard = activePair.querySelector('.story-right-card');
 
+        activePair.style.display = 'grid';
+        activePair.style.position = 'relative';
         activePair.classList.add('active');
         activePair.style.opacity = '1';
         activePair.style.pointerEvents = 'auto';

@@ -736,15 +736,15 @@ body.home-page {
 .home-page .story-stage-container {
     position: relative;
     width: 100%;
-    min-height: 490px;
     height: auto;
 }
 
 /* Card Pair (Holds Left & Right cards) */
 .home-page .story-card-pair {
+    display: none;
     position: absolute;
     inset: 0;
-    display: grid;
+    width: 100%;
     grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
     gap: 2rem;
     align-items: center;
@@ -755,6 +755,9 @@ body.home-page {
 
 .home-page .story-card-pair.active,
 .home-page .story-card-pair[data-story-pair="0"] {
+    display: grid;
+    position: relative;
+    inset: auto;
     opacity: 1;
     pointer-events: auto;
 }
@@ -923,54 +926,164 @@ body.home-page {
 }
 
 /* Responsive adjustments for Why MHA stage */
-@media (max-width: 992px) {
+@media (max-width: 1024px) {
+    .home-page .story-section {
+        padding: 55px 0 65px;
+    }
+
     .home-page .story-sticky-shell {
-        top: 80px;
+        top: 0;
+        padding: 0 1rem;
+    }
+
+    .home-page .story-nav-tabs {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        display: flex;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        padding: 0.45rem 0.5rem;
+        scrollbar-width: none;
+        margin-bottom: 1.5rem;
+    }
+
+    .home-page .story-nav-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .home-page .story-nav-tab {
+        padding: 0.65rem 1.1rem;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    .home-page .story-nav-tab .tab-num {
+        font-size: 0.85rem;
+        padding: 0.2rem 0.5rem;
     }
 
     .home-page .story-stage-container {
-        min-height: 560px;
+        height: auto;
+        min-height: auto;
     }
 
     .home-page .story-card-pair {
         grid-template-columns: 1fr;
-        gap: 1.25rem;
+        gap: 1rem;
+        align-items: start;
     }
 
     .home-page .story-left-card {
-        padding: 1.5rem 1.4rem;
+        padding: 1.4rem 1.25rem;
+        border-radius: 20px;
+    }
+
+    .home-page .story-card-badge {
+        font-size: 0.72rem;
+        margin-bottom: 0.75rem;
+        padding: 0.25rem 0.7rem;
     }
 
     .home-page .story-left-card .story-card-title {
-        font-size: 1.45rem;
+        font-size: 1.4rem;
+        line-height: 1.25;
+        margin-bottom: 0.6rem;
+    }
+
+    .home-page .story-card-desc {
+        font-size: 0.92rem;
+        line-height: 1.6;
     }
 
     .home-page .story-right-card {
         grid-template-columns: 1fr;
-        padding: 1.25rem;
+        gap: 1rem;
+        padding: 1.35rem 1.25rem;
+        border-radius: 20px;
+    }
+
+    .home-page .story-panel-copy .eyebrow {
+        font-size: 0.72rem;
+        margin-bottom: 0.35rem;
+    }
+
+    .home-page .story-panel-copy h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .home-page .story-panel-copy p {
+        font-size: 0.88rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .home-page .story-checklist {
+        gap: 0.45rem;
+    }
+
+    .home-page .story-checklist li {
+        font-size: 0.85rem;
+        padding-left: 1.35rem;
     }
 
     .home-page .story-panel-media {
         min-height: 180px;
+        max-height: 240px;
+        border-radius: 16px;
+    }
+
+    .home-page .story-panel-stat-block {
+        gap: 0.6rem;
+    }
+
+    .home-page .story-stat-card {
+        padding: 0.75rem 0.9rem;
+        border-radius: 14px;
+    }
+
+    .home-page .story-stat-card span {
+        font-size: 0.72rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .home-page .story-stat-card strong {
+        font-size: 1.05rem;
     }
 }
 
 @media (max-width: 600px) {
+    .home-page .story-stage-container {
+        min-height: 760px;
+    }
+
     .home-page .story-nav-tabs {
-        width: 100%;
-        overflow-x: auto;
-        justify-content: flex-start;
-        padding: 0.35rem;
+        padding: 0.35rem 0.4rem;
+        gap: 0.35rem;
     }
 
     .home-page .story-nav-tab {
-        padding: 0.45rem 0.85rem;
-        font-size: 0.8rem;
-        white-space: nowrap;
+        padding: 0.55rem 0.85rem;
+        font-size: 0.82rem;
     }
 
-    .home-page .story-card-badge {
-        font-size: 0.7rem;
+    .home-page .story-nav-tab .tab-num {
+        font-size: 0.78rem;
+        padding: 0.15rem 0.4rem;
+    }
+
+    .home-page .story-left-card {
+        padding: 1.25rem 1rem;
+    }
+
+    .home-page .story-right-card {
+        padding: 1.15rem 1rem;
+    }
+
+    .home-page .story-card-title {
+        font-size: 1.25rem;
     }
 }
 
@@ -1721,53 +1834,9 @@ body.home-page {
     will-change: transform, opacity;
 }
 
-@media (min-width: 1025px) {
-    .home-page .story-scroll-zone {
-        min-height: auto;
-    }
-
-    .home-page .story-sticky-shell {
-        position: relative;
-        top: 0;
-        min-height: auto;
-    }
-
-    /* Desktop Vertical Progress Bar & Copy Column */
-    .home-page .story-copy-column {
-        position: relative;
-        padding-left: 0;
-        gap: 45vh;
-        /* Dramatically increases scroll time/spacing between steps */
-        padding-bottom: 30vh;
-        /* Keeps the last step visible longer before scrolling past */
-    }
-
-    .home-page .story-progress-bar {
-        position: absolute;
-        left: 46%;
-        top: 4.5rem;
-        bottom: 4.5rem;
-        width: 4px;
-        height: auto;
-        /* override horizontal height */
-        margin: 0;
-        transform: translateX(-50%);
-        z-index: 5;
-    }
-
-    .home-page .story-progress-bar span {
-        width: 100%;
-        height: 12%;
-        /* controlled by JS */
-        background: linear-gradient(180deg, var(--home-teal), var(--home-gold));
-        transition: height 0.3s ease;
-    }
-}
-
 @media (max-width: 1200px) {
 
     .home-page .hero-shell,
-    .home-page .story-sticky-shell,
     .home-page .services-layout,
     .home-page .contact-shell {
         grid-template-columns: 1fr;
@@ -1812,39 +1881,6 @@ body.home-page {
     .home-page .hero-proof-grid,
     .home-page .founder-highlight-grid {
         grid-template-columns: 1fr;
-    }
-
-    .home-page .story-copy-column {
-        order: 1;
-    }
-
-    .home-page .story-visual-column {
-        position: relative;
-        top: 0;
-        min-height: auto;
-        order: 2;
-    }
-
-    .home-page .story-visual-panel {
-        display: none;
-        position: relative;
-        inset: auto;
-        grid-template-columns: 1fr;
-        padding: 0;
-    }
-
-    .home-page .story-panel-copy {
-        padding: 0.4rem 0.3rem 0;
-    }
-
-    .home-page .story-panel-media,
-    .home-page .story-panel-stat-block {
-        min-height: 240px;
-    }
-
-    .home-page .story-visual-panel.active {
-        display: grid;
-        padding: 1rem;
     }
 
     .home-page .mosaic-grid {
