@@ -16,85 +16,79 @@ function setActiveStoryState(index, steps, panels) {
 }
 
 function initStoryScene() {
-    const storyZone = document.getElementById('storyScrollZone');
-    const progressFill = document.getElementById('storyProgressFill');
-    const steps = Array.from(document.querySelectorAll('[data-story-step]'));
-    const panels = Array.from(document.querySelectorAll('[data-story-panel]'));
+    const pairs = Array.from(document.querySelectorAll('[data-story-pair]'));
+    const tabs = Array.from(document.querySelectorAll('[data-story-tab]'));
 
-    if (!storyZone || !progressFill || !steps.length || !panels.length) {
+    if (!pairs.length || !tabs.length) {
         return () => { };
     }
 
-    // Helper: calculate element position relative to the scrollytelling container
-    const getOffsetTopRelativeToZone = (elem) => {
-        let offset = 0;
-        let current = elem;
-        while (current && current !== storyZone) {
-            offset += current.offsetTop;
-            current = current.offsetParent;
+    let activeIndex = 0;
+
+    const switchCard = (newIndex) => {
+        tabs.forEach((tab, idx) => {
+            tab.classList.toggle('active', idx === newIndex);
+        });
+
+        pairs.forEach((pair, idx) => {
+            if (idx !== newIndex) {
+                pair.classList.remove('active');
+                pair.style.opacity = '0';
+                pair.style.pointerEvents = 'none';
+                const leftCard = pair.querySelector('.story-left-card');
+                const rightCard = pair.querySelector('.story-right-card');
+                if (leftCard) {
+                    leftCard.style.transform = 'translateX(-80px)';
+                    leftCard.style.opacity = '0';
+                }
+                if (rightCard) {
+                    rightCard.style.transform = 'translateX(40px)';
+                    rightCard.style.opacity = '0';
+                }
+            }
+        });
+
+        const activePair = pairs[newIndex];
+        const leftCard = activePair.querySelector('.story-left-card');
+        const rightCard = activePair.querySelector('.story-right-card');
+
+        activePair.classList.add('active');
+        activePair.style.opacity = '1';
+        activePair.style.pointerEvents = 'auto';
+
+        if (leftCard) {
+            leftCard.style.transition = 'none';
+            leftCard.style.transform = 'translateX(-120px)';
+            leftCard.style.opacity = '0';
+            leftCard.offsetHeight; // Force reflow
+            leftCard.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
+            leftCard.style.transform = 'translateX(0)';
+            leftCard.style.opacity = '1';
         }
-        return offset;
+
+        if (rightCard) {
+            rightCard.style.transition = 'none';
+            rightCard.style.transform = 'translateX(50px)';
+            rightCard.style.opacity = '0';
+            rightCard.offsetHeight; // Force reflow
+            rightCard.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.06s, opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.06s';
+            rightCard.style.transform = 'translateX(0)';
+            rightCard.style.opacity = '1';
+        }
+
+        activeIndex = newIndex;
     };
 
-    const render = () => {
-        const rect = storyZone.getBoundingClientRect();
-        const viewportCenter = window.innerHeight / 2;
-        const currentCenterOffset = viewportCenter - rect.top;
-
-        const step0Center = getOffsetTopRelativeToZone(steps[0]) + steps[0].offsetHeight / 2;
-        const stepLastCenter = getOffsetTopRelativeToZone(steps[steps.length - 1]) + steps[steps.length - 1].offsetHeight / 2;
-        const startBuffer = steps[0].offsetHeight * 0.45;
-        const endBuffer = steps[steps.length - 1].offsetHeight * 0.45;
-        const progressStart = step0Center - startBuffer;
-        const progressEnd = stepLastCenter + endBuffer;
-
-        const range = progressEnd - progressStart;
-        let progress = 0;
-        if (range > 0) {
-            const rawProgress = (currentCenterOffset - progressStart) / range;
-            progress = clamp(rawProgress, 0, 1);
-        } else {
-            progress = currentCenterOffset >= progressStart ? 1 : 0;
-        }
-
-        const stage = Math.min(steps.length - 1, Math.floor(progress * steps.length));
-
-        // Adjust progress bar direction depending on screen size
-        if (window.innerWidth >= 1025) {
-            progressFill.style.height = `${Math.max(progress * 100, 12)}%`;
-            progressFill.style.width = '100%';
-        } else {
-            progressFill.style.width = `${Math.max(progress * 100, 12)}%`;
-            progressFill.style.height = '100%';
-        }
-        
-        setActiveStoryState(stage, steps, panels);
-    };
-
-    // Add click listeners to story steps to enable smooth scrolling to center each step in the screen
-    steps.forEach((step, index) => {
-        step.style.cursor = 'pointer';
-        step.addEventListener('click', () => {
-            const rect = storyZone.getBoundingClientRect();
-            const scrollTop = window.scrollY || document.documentElement.scrollTop;
-            const zoneTop = rect.top + scrollTop;
-            const viewportHeight = window.innerHeight;
-            const viewportCenter = viewportHeight / 2;
-
-            const stepCenter = getOffsetTopRelativeToZone(step) + step.offsetHeight / 2;
-
-            // Scroll page so that the clicked step card centers perfectly in the viewport
-            const targetScrollY = zoneTop + stepCenter - viewportCenter;
-
-            window.scrollTo({
-                top: targetScrollY,
-                behavior: 'smooth'
-            });
+    tabs.forEach((tab, index) => {
+        tab.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchCard(index);
         });
     });
 
-    render();
-    return render;
+    switchCard(0);
+
+    return () => { };
 }
 
 function initParallaxScene() {
@@ -210,45 +204,7 @@ async function initMotionEnhancements() {
         );
     }
 
-    // 2. Interactive enhancements for What We Bring (mosaic cards)
-    // Only target cards inside a .mosaic-grid (ignores our new .carousel-wrapper cards)
-    const mosaicCards = Array.from(document.querySelectorAll('.mosaic-grid .mosaic-card'));
-    if (mosaicCards.length) {
-        // Isolate from main.js reveal observer
-        mosaicCards.forEach(card => {
-            card.classList.remove('reveal-slide-up', 'reveal-fade');
-            if (window.revealObserver) {
-                window.revealObserver.unobserve(card);
-            }
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(40px) scale(0.975)';
-            
-            // Mousemove tracking coordinates for spotlight background glow
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
 
-        // Trigger stagger entrance via Motion One
-        const grid = document.querySelector('.mosaic-grid');
-        if (grid) {
-            inView(grid, () => {
-                animate(
-                    mosaicCards,
-                    { opacity: [0, 1], y: [40, 0], scale: [0.975, 1] },
-                    {
-                        duration: 0.85,
-                        delay: stagger(0.12),
-                        easing: [0.16, 1, 0.3, 1]
-                    }
-                );
-            }, { amount: 0.15 });
-        }
-    }
 
     // 3. Staggered scroll entrance for capability cloud chips
     const chips = Array.from(document.querySelectorAll('.capability-chip'));
