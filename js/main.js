@@ -262,6 +262,23 @@ document.addEventListener('DOMContentLoaded', function () {
         revealObserver.observe(el);
     });
 
+    // "What We Bring" — scroll-triggered drop animation
+    const bringSection = document.querySelector('.bring-section');
+    if (bringSection) {
+        let firstCheck = true;
+        new IntersectionObserver(function (entries, obs) {
+            // Skip the very first callback (page load) — only trigger on actual scroll
+            if (firstCheck) {
+                firstCheck = false;
+                if (entries[0].isIntersecting) return; // already visible on load, wait for re-entry
+            }
+            if (entries[0].isIntersecting) {
+                bringSection.classList.add('in-view');
+                obs.disconnect();
+            }
+        }, { threshold: 0.15 }).observe(bringSection);
+    }
+
     // Animated counter for hero metrics
     const counterElements = document.querySelectorAll('.metric-number[data-count]');
     if (counterElements.length) {
