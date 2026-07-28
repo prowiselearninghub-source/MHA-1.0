@@ -566,3 +566,56 @@ document.addEventListener('keydown', function (event) {
         closeServiceModal();
     }
 });
+
+// Table of Contents Smooth Auto-Scroll & Scrollspy Highlight for Legal Pages
+document.addEventListener('DOMContentLoaded', function () {
+    const legalSections = document.querySelectorAll('.legal-section[id]');
+    const legalTocLinks = document.querySelectorAll('.legal-toc-list a[href^="#"]');
+
+    if (legalSections.length && legalTocLinks.length) {
+        // Smooth auto-scroll on click
+        legalTocLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href').substring(1);
+                const targetEl = document.getElementById(targetId);
+                if (targetEl) {
+                    e.preventDefault();
+                    const headerOffset = 80;
+                    const elementPosition = targetEl.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    legalTocLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // IntersectionObserver for auto scrollspy highlighting as user scrolls
+        const spyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const activeId = entry.target.getAttribute('id');
+                    legalTocLinks.forEach(link => {
+                        const href = link.getAttribute('href').substring(1);
+                        if (href === activeId) {
+                            link.classList.add('active');
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '-100px 0px -40% 0px'
+        });
+
+        legalSections.forEach(section => spyObserver.observe(section));
+    }
+});
+
