@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     loadTeamProfiles();
     initializeFounderProfileModal();
+    initTeamGraphObserver();
 });
 
 function initializeFounderProfileModal() {
@@ -35,20 +36,22 @@ function loadTeamProfiles() {
     const founderTrack = document.getElementById('teamFounderTrack');
     const cardsTrack = document.getElementById('teamCardsTrack');
     
+    let cardSeqIndex = 0;
+
     if (founderTrack && typeof founderProfileData !== 'undefined') {
         founderTrack.innerHTML = '';
         const founderObj = {
             ...founderProfileData,
             credentials: founderProfileData.title || founderProfileData.credentials
         };
-        const founderCard = createTeamProfileCard(founderObj, 0);
+        const founderCard = createTeamProfileCard(founderObj, cardSeqIndex++);
         founderTrack.appendChild(founderCard);
     }
 
     if (cardsTrack) {
         cardsTrack.innerHTML = '';
-        teamMembersData.forEach((member, index) => {
-            const card = createTeamProfileCard(member, index + 1);
+        teamMembersData.forEach((member) => {
+            const card = createTeamProfileCard(member, cardSeqIndex++);
             cardsTrack.appendChild(card);
         });
     }
@@ -59,6 +62,7 @@ function createTeamProfileCard(member, index) {
     const card = document.createElement('div');
     card.className = 'team-profile-card';
     card.setAttribute('data-card-index', index);
+    card.style.setProperty('transition-delay', `${index * 380}ms`, 'important');
     card.onclick = () => openTeamMemberModal(member);
 
     const fallbackInitials = member.name
@@ -188,3 +192,30 @@ document.addEventListener('keydown', function(event) {
         closeTeamModal();
     }
 });
+
+// Scroll-triggered sequence animation for Team Graph cards (triggers ONCE per visit, resets on browser refresh)
+function initTeamGraphObserver() {
+    const teamSection = document.getElementById('team-graph') || document.querySelector('.team-grid-section');
+    if (!teamSection) return;
+
+    // Reset initial state on page refresh / load
+    teamSection.classList.remove('in-view');
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    obs.unobserve(entry.target); // Trigger ONCE per visit
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        observer.observe(teamSection);
+    } else {
+        teamSection.classList.add('in-view');
+    }
+}
