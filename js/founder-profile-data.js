@@ -2,8 +2,8 @@ const founderProfileData = {
     name: 'Mihen Halani',
     title: 'Founder & Managing Partner',
     credentials: 'IIM Ahmedabad | Fellow CS | LLB | B.Com | NISM Social Audit Certificate',
-    image: 'images/team/mihen-halani.jpg',
-    enhancedImage: 'images/team/mihen-halani.jpg',
+    image: 'images/latest-images/team/mihen_hilani.JPG',
+    enhancedImage: 'images/latest-images/team/mihen_hilani.JPG',
     specialization: 'Corporate Governance, Securities Law, FEMA & Strategic Advisory',
     experience: '10+ years',
     expertise: [

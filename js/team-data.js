@@ -5,8 +5,8 @@ const teamMembersData = [
         id: 1,
         name: "Mitesh Shah",
         credentials: "FCS, B.Com",
-        image: "images/team/member-placeholder.jpg",
-        enhancedImage: "images/team/member-placeholder.jpg",
+        image: "images/latest-images/team/115A5139.JPG",
+        enhancedImage: "images/latest-images/team/115A5139.JPG",
         specialization: "NCLT Matters & Insolvency",
         experience: "8+ years",
         expertise: [
@@ -22,8 +22,8 @@ const teamMembersData = [
         id: 2,
         name: "Milin Ramani",
         credentials: "CS, LLB, B.Com",
-        image: "images/team/milin_ramani.jpg",
-        enhancedImage: "images/team/milin_ramani.jpg",
+        image: "images/latest-images/team/milin_ramani.jpg",
+        enhancedImage: "images/latest-images/team/milin_ramani.jpg",
         specialization: "SEBI Compliance, Listed Entities & Corporate Governance",
         experience: "10+ years",
         expertise: [
@@ -39,8 +39,8 @@ const teamMembersData = [
         id: 3,
         name: "Amita Karia",
         credentials: "CS, B.Com",
-        image: "images/team/amita-karia.jpg",
-        enhancedImage: "images/team/amita-karia.jpg",
+        image: "images/latest-images/team/amita_karia.JPG",
+        enhancedImage: "images/latest-images/team/amita_karia.JPG",
         specialization: "Transaction Advisory & Valuation",
         experience: "5+ years",
         expertise: [
@@ -54,10 +54,10 @@ const teamMembersData = [
     },
     {
         id: 4,
-        name: "Nidhi Grover",
+        name: "Nidhi Busa",
         credentials: "CS, LLB, B.Com",
-        image: "images/team/member-placeholder.jpg",
-        enhancedImage: "images/team/member-placeholder.jpg",
+        image: "images/latest-images/team/nidhi_busa.JPG",
+        enhancedImage: "images/latest-images/team/nidhi_busa.JPG",
         specialization: "Startup Advisory & MSME Services",
         experience: "5+ years",
         expertise: [
@@ -73,8 +73,8 @@ const teamMembersData = [
         id: 5,
         name: "Aditi Khandelwal",
         credentials: "FCS, B.Com",
-        image: "images/team/aditi-khandelwal.jpg",
-        enhancedImage: "images/team/aditi-khandelwal.jpg",
+        image: "images/latest-images/team/aditi_khandelwal.JPG",
+        enhancedImage: "images/latest-images/team/aditi_khandelwal.JPG",
         specialization: "Secretarial Audit & Compliance Health Check",
         experience: "7+ years",
         expertise: [
@@ -90,8 +90,8 @@ const teamMembersData = [
         id: 6,
         name: "Dipen Shah",
         credentials: "CS, B.Com",
-        image: "images/team/member-placeholder.jpg",
-        enhancedImage: "images/team/member-placeholder.jpg",
+        image: "images/latest-images/team/dipen_shah.JPG",
+        enhancedImage: "images/latest-images/team/dipen_shah.JPG",
         specialization: "FEMA & Foreign Investment Advisory",
         experience: "6+ years",
         expertise: [
@@ -107,8 +107,8 @@ const teamMembersData = [
         id: 7,
         name: "Pratap Chavda",
         credentials: "CS, B.Com",
-        image: "images/team/pratap-chavda.jpg",
-        enhancedImage: "images/team/pratap-chavda.jpg",
+        image: "images/latest-images/team/pratab_chavda.JPG",
+        enhancedImage: "images/latest-images/team/pratab_chavda.JPG",
         specialization: "Business Setup & Registration",
         experience: "6+ years",
         expertise: [
@@ -122,27 +122,27 @@ const teamMembersData = [
     },
     {
         id: 8,
-        name: "Vibhor Kala",
-        credentials: "CA, B.Com",
-        image: "images/team/member-placeholder.jpg",
-        enhancedImage: "images/team/member-placeholder.jpg",
-        specialization: "Accounting & Taxation",
+        name: "Mahesh Dhuri",
+        credentials: "B.Com",
+        image: "images/latest-images/team/mahesh_dhuri.JPG",
+        enhancedImage: "images/latest-images/team/mahesh_dhuri.JPG",
+        specialization: "Administrative Support & Operations",
         experience: "5+ years",
         expertise: [
-            "Financial Accounting",
-            "Tax Planning & Compliance",
-            "Audit & Assurance",
-            "GST Advisory",
-            "Financial Reporting"
+            "Office Administration",
+            "Document Management",
+            "Client Coordination",
+            "Compliance Support",
+            "Operations Management"
         ],
-        bio: "Vibhor is a Chartered Accountant specializing in accounting and taxation services. He provides comprehensive financial advisory and ensures compliance with tax regulations. His expertise in GST and financial reporting helps clients maintain accurate financial records and optimize tax strategies."
+        bio: "Mahesh provides essential administrative and operational support to the team. His organizational skills and attention to detail ensure smooth day-to-day operations. He plays a crucial role in document management, client coordination, and supporting the team's compliance activities."
     },
     {
         id: 9,
-        name: "Mahesh Dhuri",
+        name: "Monika Shah",
         credentials: "B.Com",
-        image: "images/team/member-placeholder.jpg",
-        enhancedImage: "images/team/member-placeholder.jpg",
+        image: "images/latest-images/team/monika_shah.JPG",
+        enhancedImage: "images/latest-images/team/monika_shah.JPG",
         specialization: "Administrative Support & Operations",
         experience: "5+ years",
         expertise: [

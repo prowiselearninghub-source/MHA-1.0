@@ -33,28 +33,48 @@ function openFounderProfileModal() {
 
 // Load and display team profiles in grid format (Founder in Row 0 middle, Team in Row 1+ grid)
 function loadTeamProfiles() {
-    const founderTrack = document.getElementById('teamFounderTrack');
     const cardsTrack = document.getElementById('teamCardsTrack');
-    
-    let cardSeqIndex = 0;
+    if (!cardsTrack) return;
 
-    if (founderTrack && typeof founderProfileData !== 'undefined') {
-        founderTrack.innerHTML = '';
-        const founderObj = {
-            ...founderProfileData,
-            credentials: founderProfileData.title || founderProfileData.credentials
-        };
-        const founderCard = createTeamProfileCard(founderObj, cardSeqIndex++);
-        founderTrack.appendChild(founderCard);
-    }
+    const members = typeof founderProfileData !== 'undefined'
+        ? [{ ...founderProfileData, credentials: founderProfileData.title }, ...teamMembersData]
+        : teamMembersData;
+    const pageSize = 4;
+    const pageCount = Math.ceil(members.length / pageSize);
+    let currentPage = 0;
+    const dots = document.getElementById('teamCarouselDots');
+    const previousButton = document.getElementById('teamPreviousButton');
+    const nextButton = document.getElementById('teamNextButton');
 
-    if (cardsTrack) {
+    const renderPage = () => {
+        const pageMembers = members.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
         cardsTrack.innerHTML = '';
-        teamMembersData.forEach((member) => {
-            const card = createTeamProfileCard(member, cardSeqIndex++);
-            cardsTrack.appendChild(card);
-        });
+        pageMembers.forEach((member, index) => cardsTrack.appendChild(createTeamProfileCard(member, index)));
+        cardsTrack.classList.remove('team-page-entering');
+        requestAnimationFrame(() => cardsTrack.classList.add('team-page-entering'));
+        if (dots) {
+            dots.querySelectorAll('button').forEach((dot, index) => dot.classList.toggle('is-active', index === currentPage));
+        }
+        if (previousButton) previousButton.disabled = currentPage === 0;
+        if (nextButton) nextButton.disabled = currentPage === pageCount - 1;
+    };
+
+    if (dots) {
+        dots.innerHTML = Array.from({ length: pageCount }, (_, index) =>
+            `<button type="button" aria-label="Show team members ${index + 1}" class="${index === 0 ? 'is-active' : ''}"></button>`
+        ).join('');
+        dots.querySelectorAll('button').forEach((dot, index) => dot.addEventListener('click', () => {
+            currentPage = index;
+            renderPage();
+        }));
     }
+    if (previousButton) previousButton.addEventListener('click', () => {
+        if (currentPage > 0) { currentPage -= 1; renderPage(); }
+    });
+    if (nextButton) nextButton.addEventListener('click', () => {
+        if (currentPage < pageCount - 1) { currentPage += 1; renderPage(); }
+    });
+    renderPage();
 }
 
 // Create team profile card

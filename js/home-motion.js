@@ -16,82 +16,8 @@ function setActiveStoryState(index, steps, panels) {
 }
 
 function initStoryScene() {
-    const pairs = Array.from(document.querySelectorAll('[data-story-pair]'));
-    const tabs = Array.from(document.querySelectorAll('[data-story-tab]'));
-
-    if (!pairs.length || !tabs.length) {
-        return () => { };
-    }
-
-    let activeIndex = 0;
-
-    const switchCard = (newIndex) => {
-        tabs.forEach((tab, idx) => {
-            tab.classList.toggle('active', idx === newIndex);
-        });
-
-        pairs.forEach((pair, idx) => {
-            if (idx !== newIndex) {
-                pair.classList.remove('active');
-                pair.style.display = 'none';
-                pair.style.position = 'absolute';
-                pair.style.opacity = '0';
-                pair.style.pointerEvents = 'none';
-                const leftCard = pair.querySelector('.story-left-card');
-                const rightCard = pair.querySelector('.story-right-card');
-                if (leftCard) {
-                    leftCard.style.transform = 'translateX(-80px)';
-                    leftCard.style.opacity = '0';
-                }
-                if (rightCard) {
-                    rightCard.style.transform = 'translateX(40px)';
-                    rightCard.style.opacity = '0';
-                }
-            }
-        });
-
-        const activePair = pairs[newIndex];
-        const leftCard = activePair.querySelector('.story-left-card');
-        const rightCard = activePair.querySelector('.story-right-card');
-
-        activePair.style.display = 'grid';
-        activePair.style.position = 'relative';
-        activePair.classList.add('active');
-        activePair.style.opacity = '1';
-        activePair.style.pointerEvents = 'auto';
-
-        if (leftCard) {
-            leftCard.style.transition = 'none';
-            leftCard.style.transform = 'translateX(-120px)';
-            leftCard.style.opacity = '0';
-            leftCard.offsetHeight; // Force reflow
-            leftCard.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
-            leftCard.style.transform = 'translateX(0)';
-            leftCard.style.opacity = '1';
-        }
-
-        if (rightCard) {
-            rightCard.style.transition = 'none';
-            rightCard.style.transform = 'translateX(50px)';
-            rightCard.style.opacity = '0';
-            rightCard.offsetHeight; // Force reflow
-            rightCard.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.06s, opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.06s';
-            rightCard.style.transform = 'translateX(0)';
-            rightCard.style.opacity = '1';
-        }
-
-        activeIndex = newIndex;
-    };
-
-    tabs.forEach((tab, index) => {
-        tab.addEventListener('click', (e) => {
-            e.preventDefault();
-            switchCard(index);
-        });
-    });
-
-    switchCard(0);
-
+    // The MHA process is intentionally presented as a complete vertical sequence.
+    // Each step remains visible, so visitors can read the full approach without toggling cards.
     return () => { };
 }
 

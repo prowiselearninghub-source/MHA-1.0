@@ -1,60 +1,58 @@
 // Service Details Data - MHA Complete Services
 const serviceDetails = {
     1: {
-        title: "Governance & Ongoing Compliances",
+        title: "Corporate Secretarial Services",
         content: `
-            <p>Robust governance and regular compliances form the foundation of sustainable businesses. We act as long‑term governance partners to boards and management teams.</p>
+            <p>Our team handles corporate secretarial services for domestic and international companies, including multinational companies, conglomerates and listed or unlisted entities.</p>
             
             <h4>Coverage includes:</h4>
             <ul>
-                <li>End‑to‑end compliances under the Companies Act, 2013</li>
-                <li>Board and shareholder meeting processes and secretarial standards</li>
-                <li>ROC filings, registers, and statutory records</li>
-                <li>Governance reporting and compliance health reviews</li>
-                <li>Advisory support to promoters, boards, and senior management</li>
+                <li>Corporate secretarial support for new and existing clients</li>
+                <li>Support for domestic and international companies</li>
+                <li>Practical company secretarial guidance across sectors</li>
             </ul>
         `
     },
     2: {
         title: "SEBI & Listed Entity Advisory",
         content: `
-            <p>We advise listed companies and capital‑market participants on continuous disclosure and governance requirements under SEBI regulations.</p>
+            <p>We assist with SEBI compliance and listing procedures under the guidance of professionals.</p>
             
             <h4>Services include:</h4>
             <ul>
-                <li>SEBI LODR compliances and certifications</li>
-                <li>Insider Trading (PIT) compliance frameworks</li>
-                <li>Related Party Transactions and corporate actions</li>
-                <li>Advisory under SEBI ICDR, SAST, DP and allied regulations</li>
-                <li>Liaison with stock exchanges, SEBI, and SAT</li>
+                <li>Assistance in managing IPO and FPO matters</li>
+                <li>Listing, delisting and relisting of securities</li>
+                <li>Audits and certifications under listing requirements</li>
+                <li>SEBI LODR, SAST, PITR, ICDR and DP compliance</li>
+                <li>Liaison with stock exchanges, SEBI and SAT</li>
             </ul>
         `
     },
     3: {
         title: "FEMA & Cross‑Border Advisory",
         content: `
-            <p>We support Indian and foreign clients in structuring and executing cross‑border transactions in compliance with FEMA and RBI regulations.</p>
+            <p>We advise on FEMA and RBI matters for investment, borrowing, cross-border operations and related compliance.</p>
             
             <h4>Key areas:</h4>
             <ul>
-                <li>FDI, FPI, NRI and PIO investments</li>
-                <li>FC‑GPR, FC‑TRS, ODI and ECB compliances</li>
+                <li>FDI, FII, NRI and PIO investments</li>
+                <li>External Commercial Borrowings</li>
                 <li>Share transfers between residents and non‑residents</li>
-                <li>FEMA audits, certifications, and compounding matters</li>
-                <li>Advisory on overseas investments and global structuring</li>
+                <li>FEMA audits, statutory certificates and compounding of offences</li>
+                <li>Overseas Direct Investment and setting up a company outside India</li>
             </ul>
         `
     },
     4: {
         title: "Business Setup & Structuring",
         content: `
-            <p>We assist domestic and international clients in establishing and restructuring business entities in India.</p>
+            <p>We assist multinational companies, non-profit organisations, startups and corporates with business setup and related legal support in India.</p>
             
             <h4>Our services include:</h4>
             <ul>
                 <li>Incorporation of companies and LLPs</li>
                 <li>Drafting and alteration of MOA & AOA</li>
-                <li>Registration of subsidiaries, joint ventures, and SPVs</li>
+                <li>Registration of foreign subsidiaries, joint ventures and special purpose vehicles</li>
                 <li>Conversion between company, LLP, and partnership structures</li>
                 <li>Registration of Branch, Liaison and Project Offices</li>
                 <li>Shifting of registered offices and jurisdictional changes</li>
@@ -65,35 +63,32 @@ const serviceDetails = {
     5: {
         title: "Startups & MSME Advisory",
         content: `
-            <p>We provide tailored legal, governance, and fundraising support to startups and MSMEs across their growth journey.</p>
+            <p>We help startups and MSMEs address legal and operational hurdles from establishment through growth.</p>
             
             <h4>Support includes:</h4>
             <ul>
-                <li>Startup India and DPIIT registrations</li>
-                <li>Early‑stage and primary investment support</li>
-                <li>Drafting and negotiation of SHA, SSA, and SPA</li>
+                <li>Startup India and Department for Promotion of Industry and Internal Trade registrations</li>
+                <li>Primary investment support</li>
+                <li>Drafting of SHA, SSA and SPA</li>
                 <li>ESOP structuring and advisory</li>
                 <li>Drafting and vetting of commercial contracts</li>
             </ul>
         `
     },
     6: {
-        title: "Fundraising & Capital Structuring",
+        title: "Financial & Corporate Restructuring",
         content: `
-            <p>We advise companies on capital raising and ownership structuring aligned with regulatory, valuation, and investor considerations.</p>
+            <p>We assist with restructuring a company's legal, ownership and capital structure to meet its present needs.</p>
             
             <h4>Services include:</h4>
             <ul>
-                <li><strong>Investor Representation & Pitch Deck Preparation</strong> — representing companies in front of investors, structuring deals, and preparing comprehensive pitch decks for fundraising</li>
-                <li><strong>Preferential Issues for Listed Entities</strong> — including complex share issuances for consideration other than cash, structured for acquiring other companies</li>
-                <li><strong>Rights Issues</strong> for listed and unlisted companies</li>
-                <li>Bonus issues and sweat equity shares</li>
-                <li>Instrument structuring (CCDs, CCPS, hybrid securities)</li>
-                <li>Share warrants and capital reclassification</li>
+                <li>Mergers with subsidiary or group companies, demergers and divestments</li>
+                <li>Issue and allotment of securities, including preferential issues and private placements</li>
+                <li>Rights issues, bonus issues and sweat equity</li>
+                <li>Instrument structuring including CCDs and CCPS</li>
+                <li>Share warrants, capital reclassification, consolidation and subdivision</li>
                 <li>Exit planning and implementation</li>
             </ul>
-            
-            <p style="margin-top: 1rem; font-style: italic; color: var(--primary-turquoise);">MHA has successfully executed numerous complex fundraising transactions, including representing companies in investor meetings and preparing compelling pitch decks that led to successful capital raises.</p>
         `
     },
     7: {
@@ -131,12 +126,12 @@ const serviceDetails = {
     9: {
         title: "Due Diligence & Compliance Reviews",
         content: `
-            <p>We conduct transaction‑specific and periodic legal and secretarial due diligence to assess risk and compliance exposure.</p>
+            <p>We conduct legal and secretarial due diligence based on the nature of the transaction.</p>
             
             <h4>Applicable to:</h4>
             <ul>
                 <li>Venture capital and private equity investments</li>
-                <li>Domestic and cross‑border M&A</li>
+                <li>Mergers and acquisitions, including cross-border acquisitions</li>
                 <li>IPOs, rights issues, and lender due diligence</li>
                 <li>Overseas borrowings including ECBs and GDRs</li>
             </ul>
@@ -145,9 +140,9 @@ const serviceDetails = {
     10: {
         title: "Secretarial Audit",
         content: `
-            <p>We conduct Secretarial Audits for listed and unlisted companies under the Companies Act, 2013, ensuring timely reporting and regulatory alignment.</p>
+            <p>Our dedicated team undertakes Secretarial Audits under the Companies Act, 2013 for listed and unlisted public companies.</p>
             
-            <p>Our team has extensive experience conducting secretarial audits across various sectors, maintaining the highest standards of compliance and reporting quality.</p>
+            <p>We focus on timely delivery of audit reports within the applicable time limits.</p>
         `
     },
     11: {
@@ -164,17 +159,17 @@ const serviceDetails = {
         `
     },
     12: {
-        title: "Transaction Advisory & CFO Support",
+        title: "Transaction Advisory",
         content: `
-            <p>We provide integrated transaction and financial advisory support.</p>
+            <p>We provide tailored transaction advisory support for corporate and financial matters.</p>
             
             <h4>Services include:</h4>
             <ul>
                 <li>Tax and cross‑border taxation advisory</li>
-                <li>IBC‑related advisory and valuation coordination</li>
+                <li>Advisory on the Insolvency and Bankruptcy Code and valuation of securities</li>
                 <li>Transfer pricing advisory</li>
-                <li>Fundraising documentation and transaction support</li>
-                <li>Virtual CFO services and financial projections</li>
+                <li>Fund raising and primary investment support, including SHA, SPA and SSA drafting</li>
+                <li>Financial projections</li>
             </ul>
         `
     },
@@ -347,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     throw new Error(result.message || 'Unable to send message right now.');
                 }
             } catch (error) {
-                formStatus.innerHTML = '<div class="form-status error">We could not send your message automatically. Please email compliance@mha-cs.com or call 022 4516 5109 directly.</div>';
+                formStatus.innerHTML = '<div class="form-status error">We could not send your message automatically. Please email mihenhalani@mhacs.in or call 022 4516 5109 directly.</div>';
             } finally {
                 submitButton.disabled = false;
                 submitButton.innerHTML = originalHtml;
@@ -385,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     throw new Error(result.message || 'Unable to send message right now.');
                 }
             } catch (error) {
-                careerFormStatus.innerHTML = '<div class="form-status error">We could not send your application automatically. Please email compliance@mha-cs.com or call 022 4516 5109 directly.</div>';
+                careerFormStatus.innerHTML = '<div class="form-status error">We could not send your application automatically. Please email mihenhalani@mhacs.in or call 022 4516 5109 directly.</div>';
             } finally {
                 submitButton.disabled = false;
                 submitButton.innerHTML = originalHtml;
