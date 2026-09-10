@@ -67,7 +67,7 @@ const serviceDetails = {
             
             <h4>Support includes:</h4>
             <ul>
-                <li>Startup India and Department for Promotion of Industry and Internal Trade registrations</li>
+                <li>Startup India and Department of Industrial Policy and Promotion (“DIPP”) and Internal Trade registrations</li>
                 <li>Primary investment support</li>
                 <li>Drafting of SHA, SSA and SPA</li>
                 <li>ESOP structuring and advisory</li>
@@ -140,7 +140,7 @@ const serviceDetails = {
     10: {
         title: "Secretarial Audit",
         content: `
-            <p>Our dedicated team undertakes Secretarial Audits under the Companies Act, 2013 for listed and unlisted public companies.</p>
+            <p>Our dedicated team undertakes Secretarial Audits under the Companies Act, 2013 for listed and unlisted public companies across various sectors since the last 9 years</p>
             
             <p>We focus on timely delivery of audit reports within the applicable time limits.</p>
         `
@@ -155,6 +155,8 @@ const serviceDetails = {
                 <li>Revival of struck‑off companies</li>
                 <li>Voluntary and compulsory winding‑up</li>
                 <li>Business closure and restructuring proceedings</li>
+                <li>Striking off the name of inactive companies from Register of Companies</li>
+                <li>Sale of existing business to other entities</li>
             </ul>
         `
     },
@@ -181,7 +183,7 @@ const serviceDetails = {
             <h4>Services include:</h4>
             <ul>
                 <li>Import Export Code (IEC) applications</li>
-                <li>Intellectual property registrations (Trademark, Copyright, Design)</li>
+                <li>Intellectual property registrations (Trademark, Copyright, Design, Brand Name, TM Search, TM Litigation, TM Monitoring, Paten, logo)</li>
                 <li>PAN, TAN, and GST registrations</li>
                 <li>Shops & Establishments Act registrations</li>
                 <li>Charge registration, search reports, and bank due diligence</li>

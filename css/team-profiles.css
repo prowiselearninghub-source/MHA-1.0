@@ -348,7 +348,7 @@
 /* Four-up people carousel */
 .team-grid-section,
 .home-page .team-grid-section {
-    padding: 10px 0 26px !important;
+    padding: 72px 0 26px !important;
     background: #ffffff !important;
     border-top: 0 !important;
 }
@@ -356,26 +356,38 @@
 .team-grid-header,
 .home-page .team-grid-header {
     align-items: flex-start !important;
-    max-width: none !important;
-    margin: 0 0 27px !important;
+    max-width: 1180px !important;
+    margin: 0 auto 34px !important;
 }
 
 .team-grid-section .section-title,
 .home-page .team-grid-section .section-title {
-    border-left: 7px solid #f2c46d !important;
-    color: #11776d !important;
-    font-family: Arial, sans-serif !important;
-    font-size: 2.45rem !important;
-    font-weight: 500 !important;
-    line-height: 1 !important;
+    position: relative;
+    border-left: 0 !important;
+    color: #123f38 !important;
+    font-family: var(--font-heading) !important;
+    font-size: clamp(2.2rem, 4vw, 3.35rem) !important;
+    font-weight: 600 !important;
+    line-height: 1.05 !important;
     margin: 0 !important;
-    padding: 6px 0 6px 16px !important;
+    padding: 0 0 18px !important;
     text-shadow: none !important;
 }
 
+/* .team-grid-section .section-title::after,
+.home-page .team-grid-section .section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 54px;
+    height: 4px;
+    background: #f2c46d;
+} */
+
 .team-grid-track,
 .home-page .team-grid-track {
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
     gap: 26px !important;
     max-width: none !important;
     min-height: 354px !important;

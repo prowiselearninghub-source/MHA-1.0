@@ -2760,11 +2760,12 @@ section {
 .career-hero .section-badge {
     background: rgba(242, 196, 109, 0.12);
     border: 1px solid rgba(242, 196, 109, 0.65);
-    color: #f2c46d;
+    color: #ffffff;
     letter-spacing: 0.12em;
 }
 
 .career-hero h1 {
+    color: #ffffff;
     font-size: clamp(3rem, 6vw, 5.8rem);
     line-height: 0.98;
     max-width: 760px;
@@ -2772,7 +2773,7 @@ section {
 }
 
 .career-hero p {
-    color: rgba(255, 255, 255, 0.86);
+    color: #ffffff;
     font-size: 1.08rem;
     line-height: 1.75;
     margin: 0;

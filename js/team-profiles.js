@@ -39,7 +39,7 @@ function loadTeamProfiles() {
     const members = typeof founderProfileData !== 'undefined'
         ? [{ ...founderProfileData, credentials: founderProfileData.title }, ...teamMembersData]
         : teamMembersData;
-    const pageSize = 4;
+    const pageSize = 5;
     const pageCount = Math.ceil(members.length / pageSize);
     let currentPage = 0;
     const dots = document.getElementById('teamCarouselDots');

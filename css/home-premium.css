@@ -1605,6 +1605,12 @@ body.home-page {
     display: inline;
 }
 
+.home-page .career-hero .section-badge,
+.home-page .career-hero h1,
+.home-page .career-hero p {
+    color: #ffffff !important;
+}
+
 .home-page .founder-showcase {
     margin-bottom: 0.5rem;
 }
