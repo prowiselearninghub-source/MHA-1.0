@@ -82,7 +82,6 @@ function createTeamProfileCard(member, index) {
     const card = document.createElement('div');
     card.className = 'team-profile-card';
     card.setAttribute('data-card-index', index);
-    card.style.setProperty('transition-delay', `${index * 380}ms`, 'important');
     card.onclick = () => openTeamMemberModal(member);
 
     const fallbackInitials = member.name

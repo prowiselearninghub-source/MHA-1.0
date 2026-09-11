@@ -137,8 +137,8 @@ const teamMembersData = [
         id: 4,
         name: "Shweta Gupta",
         credentials: "CS, LLB, B.Com",
-        image: "images/latest-images/team/nidhi_busa.png",
-        enhancedImage: "images/latest-images/team/nidhi_busa.png",
+        image: "images/latest-images/team/shweta_gupta.png",
+        enhancedImage: "images/latest-images/team/shweta_gupta.png",
         specialization: "Startup Advisory & MSME Services",
         experience: "5+ years",
         expertise: [
@@ -222,8 +222,8 @@ const teamMembersData = [
         id: 7,
         name: "Pratap Chavda",
         credentials: "CS, B.Com",
-        image: "images/latest-images/team/pratab_chavda.png",
-        enhancedImage: "images/latest-images/team/pratab_chavda.png",
+        image: "images/latest-images/team/pratap_chavda.png",
+        enhancedImage: "images/latest-images/team/pratap_chavda.png",
         specialization: "Business Setup & Registration",
         experience: "6+ years",
         expertise: [

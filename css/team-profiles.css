@@ -399,7 +399,7 @@
     opacity: 1 !important;
     transform: none !important;
     text-align: left !important;
-    transition: transform 0.25s ease !important;
+    transition: transform 0.1s ease !important;
 }
 
 .team-profile-card:hover,
@@ -439,6 +439,7 @@
 .home-page .team-profile-info {
     align-items: flex-start !important;
     text-align: left !important;
+    min-height: 4.75rem !important;
 }
 
 .team-profile-name,
@@ -465,6 +466,12 @@
     line-height: 1.25 !important;
     text-transform: none !important;
     text-shadow: none !important;
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: 3 !important;
+    line-clamp: 3 !important;
+    overflow: hidden !important;
+    min-height: 3.75rem !important;
 }
 
 .team-carousel-controls {
